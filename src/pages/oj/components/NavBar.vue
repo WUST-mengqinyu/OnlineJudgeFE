@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <Menu theme="light" mode="horizontal" @on-select="handleRoute" :active-name="activeMenu" class="oj-menu">
-      <div class="logo"><span>{{website.website_name}}</span></div>
+      <!--<div class="logo"><span>{{website.website_name}}</span></div>-->
       <Menu-item name="/">
         <Icon type="home"></Icon>
         {{$t('m.Home')}}
@@ -42,20 +42,15 @@
           {{$t('m.FAQ')}}
         </Menu-item>
       </Submenu>
+
       <template v-if="!isAuthenticated">
-        <div class="btn-menu">
-          <Button type="ghost"
-                  ref="loginBtn"
-                  shape="circle"
-                  @click="handleBtnClick('login')">{{$t('m.Login')}}
-          </Button>
-          <Button v-if="website.allow_register"
-                  type="ghost"
-                  shape="circle"
-                  @click="handleBtnClick('register')"
-                  style="margin-left: 5px;">{{$t('m.Register')}}
-          </Button>
-        </div>
+        <Button ref="loginBtn"
+                @click="handleBtnClick('login')">{{$t('m.Login')}}
+        </Button>
+        <Button v-if="website.allow_register"
+                @click="handleBtnClick('register')">
+          {{$t('m.Register')}}
+        </Button>
       </template>
       <template v-else>
         <Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">
@@ -71,6 +66,37 @@
           </Dropdown-menu>
         </Dropdown>
       </template>
+
+      <!--<template v-if="!isAuthenticated">-->
+        <!--<div class="btn-menu">-->
+          <!--<Button type="ghost"-->
+                  <!--ref="loginBtn"-->
+                  <!--shape="circle"-->
+                  <!--@click="handleBtnClick('login')">{{$t('m.Login')}}-->
+          <!--</Button>-->
+          <!--<Button v-if="website.allow_register"-->
+                  <!--type="ghost"-->
+                  <!--shape="circle"-->
+                  <!--@click="handleBtnClick('register')"-->
+                  <!--style="margin-left: 5px;">{{$t('m.Register')}}-->
+          <!--</Button>-->
+        <!--</div>-->
+      <!--</template>-->
+      <!--<template v-else>-->
+        <!--<Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">-->
+          <!--<Button type="text" class="drop-menu-title">{{ user.username }}-->
+            <!--<Icon type="arrow-down-b"></Icon>-->
+          <!--</Button>-->
+          <!--<Dropdown-menu slot="list">-->
+            <!--<Dropdown-item name="/user-home">{{$t('m.MyHome')}}</Dropdown-item>-->
+            <!--<Dropdown-item name="/status?myself=1">{{$t('m.MySubmissions')}}</Dropdown-item>-->
+            <!--<Dropdown-item name="/setting/profile">{{$t('m.Settings')}}</Dropdown-item>-->
+            <!--<Dropdown-item v-if="isAdminRole" name="/admin">{{$t('m.Management')}}</Dropdown-item>-->
+            <!--<Dropdown-item divided name="/logout">{{$t('m.Logout')}}</Dropdown-item>-->
+          <!--</Dropdown-menu>-->
+        <!--</Dropdown>-->
+      <!--</template>-->
+
     </Menu>
     <Modal v-model="modalVisible" :width="400">
       <div slot="header" class="modal-title">Welcome to {{website.website_name_shortcut}}</div>
