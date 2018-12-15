@@ -48,6 +48,7 @@
         </Menu-item>
       </Submenu>
 
+      <!-- 移动端 -->
       <template v-if="_isMobile()">
         <template v-if="!isAuthenticated">
           <Button ref="loginBtn"
@@ -59,7 +60,7 @@
           </Button>
         </template>
         <template v-else>
-          <Dropdown class="drop-menu" @on-click="handleRoute" placement="bottom" trigger="click">
+          <Dropdown @on-click="handleRoute" placement="bottom" trigger="click">
             <Button type="text" class="drop-menu-title">{{ user.username }}
               <Icon type="arrow-down-b"></Icon>
             </Button>
