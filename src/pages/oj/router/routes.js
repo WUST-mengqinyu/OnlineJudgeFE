@@ -8,7 +8,6 @@ import {
   Home,
   Logout,
   NotFound,
-  OIRank,
   Problem,
   ProblemList,
   ResetPassword,
@@ -114,16 +113,10 @@ export default [
     ]
   },
   {
-    name: 'acm-rank',
+    name: 'rank',
     path: '/acm-rank',
-    meta: {title: 'ACM Rankings'},
+    meta: {title: 'Rankings'},
     component: ACMRank
-  },
-  {
-    name: 'oi-rank',
-    path: '/oi-rank',
-    meta: {title: 'OI Rankings'},
-    component: OIRank
   },
   {
     name: 'user-home',

@@ -1,13 +1,19 @@
 'use strict'
 // Template version: 1.1.1
 // see http://vuejs-templates.github.io/webpack for documentation.
-
+let proxy_url = 'http://127.0.0.1:8000/';
+let target_url = () => {
+  if (process.env.TARGET) {
+    return process.env.TARGET;
+  }
+  return proxy_url;
+};
 const path = require('path')
 const commonProxy = {
   onProxyReq: (proxyReq, req, res) => {
-    proxyReq.setHeader('Referer', process.env.TARGET)
+    proxyReq.setHeader('Referer', target_url())
   },
-  target: process.env.TARGET,
+  target: target_url(),
   changeOrigin: true
 }
 
