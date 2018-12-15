@@ -2,6 +2,7 @@
 // Template version: 1.1.1
 // see http://vuejs-templates.github.io/webpack for documentation.
 let proxy_url = 'http://127.0.0.1:8000/';
+//let proxy_url = 'http://verly-badcw.top:8020/';
 let target_url = () => {
   if (process.env.TARGET) {
     return process.env.TARGET;

@@ -176,56 +176,18 @@
             <code-mirror v-model="problem.spj_code" :mode="spjMode"></code-mirror>
           </Accordion>
         </el-form-item>
-        <el-row :gutter="20">
-          <el-col :span="6">
-            <el-form-item :label="$t('m.Type')">
-              <el-radio-group v-model="problem.rule_type" :disabled="disableRuleType">
-                <el-radio label="ACM">ACM</el-radio>
-                <el-radio label="OI">OI</el-radio>
-              </el-radio-group>
-            </el-form-item>
-          </el-col>
-          <el-col :span="12">
-            <el-form-item :label="$t('m.TestCase')" :error="error.testcase">
-              <el-upload
-                action="/api/admin/test_case"
-                name="file"
-                :data="{spj: problem.spj}"
-                :show-file-list="true"
-                :on-success="uploadSucceeded"
-                :on-error="uploadFailed">
-                <el-button size="small" type="primary" icon="el-icon-fa-upload">Choose File</el-button>
-              </el-upload>
-            </el-form-item>
-          </el-col>
 
-          <el-col :span="24">
-            <el-table
-              :data="problem.test_case_score"
-              style="width: 100%">
-              <el-table-column
-                prop="input_name"
-                :label="$t('m.Input')">
-              </el-table-column>
-              <el-table-column
-                prop="output_name"
-                :label="$t('m.Output')">
-              </el-table-column>
-              <el-table-column
-                prop="score"
-                :label="$t('m.Score')">
-                <template slot-scope="scope">
-                  <el-input
-                    size="small"
-                    :placeholder="$t('m.Score')"
-                    v-model="scope.row.score"
-                    :disabled="problem.rule_type !== 'OI'">
-                  </el-input>
-                </template>
-              </el-table-column>
-            </el-table>
-          </el-col>
-        </el-row>
+        <el-form-item :label="$t('m.TestCase')" :error="error.testcase">
+          <el-upload
+            action="/api/admin/test_case"
+            name="file"
+            :data="{spj: problem.spj}"
+            :show-file-list="true"
+            :on-success="uploadSucceeded"
+            :on-error="uploadFailed">
+            <el-button size="small" type="primary" icon="el-icon-fa-upload">Choose File</el-button>
+          </el-upload>
+        </el-form-item>
 
         <el-form-item :label="$t('m.Source')">
           <el-input :placeholder="$t('m.Source')" v-model="problem.source"></el-input>
