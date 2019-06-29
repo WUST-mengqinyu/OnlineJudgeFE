@@ -41,7 +41,7 @@
             </el-input>
           </template>
         </el-table-column>
-        <el-table-column
+        <el-table-column width="200"
           prop="created_by.username"
           label="Author">
         </el-table-column>
@@ -68,7 +68,7 @@
         <el-table-column
           fixed="right"
           label="Operation"
-          width="250">
+          width="300">
           <div slot-scope="scope">
             <icon-btn name="Edit" icon="edit" @click.native="goEdit(scope.row.id)"></icon-btn>
             <icon-btn v-if="contestId" name="Make Public" icon="clone"
@@ -77,6 +77,9 @@
                       @click.native="downloadTestCase(scope.row.id)"></icon-btn>
             <icon-btn icon="trash" name="Delete Problem"
                       @click.native="deleteProblem(scope.row.id)"></icon-btn>
+<!--            todo: 题目rejudge-->
+<!--            <icon-btn icon="refresh" name="rejudge"-->
+<!--                      @click.native="deleteProblem(scope.row.id)"></icon-btn>-->
           </div>
         </el-table-column>
       </el-table>
