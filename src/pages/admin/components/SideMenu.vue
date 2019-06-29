@@ -25,6 +25,8 @@
       <el-menu-item index="/contest">{{$t('m.Contest_List')}}</el-menu-item>
       <el-menu-item index="/contest/create">{{$t('m.Create_Contest')}}</el-menu-item>
     </el-submenu>
+
+    <el-menu-item index="/rejudge"><i class="el-icon-fa-refresh"></i>{{$t('m.Rejudge')}}</el-menu-item>
   </el-menu>
 </template>
 
