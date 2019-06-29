@@ -60,34 +60,46 @@
                    :value="infoData.recent_contest_count"></info-card>
       </div>
       <panel style="margin-top: 5px">
-        <span slot="title" v-loading="loadingReleases">Release Notes
-        <el-popover placement="right" trigger="hover">
-          <i slot="reference" class="el-icon-fa-question-circle import-user-icon"></i>
-          <p>Please upgrade to the latest version to enjoy the new features. </p>
-          <p>Reference: <a href="http://docs.onlinejudge.me/#/onlinejudge/guide/upgrade" target="_blank">
-          http://docs.onlinejudge.me/#/onlinejudge/guide/upgrade</a>
-          </p>
-        </el-popover>
-        </span>
+        <p class="last-info-title">contest题目重判</p>
+        <el-input v-model="contestID" placeholder="contest号"/>
+        <el-input v-model="problemID" placeholder="题号"/>
+        <p class="last-info-title">将重判的题为： {{contestID}} {{problemID}}</p>
+        <el-button type="info" icon="refresh" @click="handleRejudge">{{$t('m.Rejudge')}}</el-button>
 
-        <el-collapse v-model="activeNames" v-for="(release, index) of releases" :key="'release' + index">
-          <el-collapse-item :name="index+1">
-            <template slot="title">
-              <div v-if="release.new_version">{{release.title}}
-                <el-tag size="mini" type="success">New Version</el-tag>
-              </div>
-              <span v-else>{{release.title}}</span>
-            </template>
-            <p>Level: {{release.level}}</p>
-            <p>Details: </p>
-            <div class="release-body">
-              <ul v-for="detail in release.details" :key="detail">
-                <li v-html="detail"></li>
-              </ul>
-            </div>
-          </el-collapse-item>
-        </el-collapse>
+        <p class="last-info-title">普通题目重判</p>
+        <el-input v-model="problemID2" placeholder="题号"/>
+        <p class="last-info-title">将重判的题为： {{problemID2}}</p>
+        <el-button type="info" icon="refresh" @click="handleRejudge2">{{$t('m.Rejudge')}}</el-button>
       </panel>
+<!--      <panel style="margin-top: 5px">-->
+<!--        <span slot="title" v-loading="loadingReleases">Release Notes-->
+<!--        <el-popover placement="right" trigger="hover">-->
+<!--          <i slot="reference" class="el-icon-fa-question-circle import-user-icon"></i>-->
+<!--          <p>Please upgrade to the latest version to enjoy the new features. </p>-->
+<!--          <p>Reference: <a href="http://docs.onlinejudge.me/#/onlinejudge/guide/upgrade" target="_blank">-->
+<!--          http://docs.onlinejudge.me/#/onlinejudge/guide/upgrade</a>-->
+<!--          </p>-->
+<!--        </el-popover>-->
+<!--        </span>-->
+
+<!--        <el-collapse v-model="activeNames" v-for="(release, index) of releases" :key="'release' + index">-->
+<!--          <el-collapse-item :name="index+1">-->
+<!--            <template slot="title">-->
+<!--              <div v-if="release.new_version">{{release.title}}-->
+<!--                <el-tag size="mini" type="success">New Version</el-tag>-->
+<!--              </div>-->
+<!--              <span v-else>{{release.title}}</span>-->
+<!--            </template>-->
+<!--            <p>Level: {{release.level}}</p>-->
+<!--            <p>Details: </p>-->
+<!--            <div class="release-body">-->
+<!--              <ul v-for="detail in release.details" :key="detail">-->
+<!--                <li v-html="detail"></li>-->
+<!--              </ul>-->
+<!--            </div>-->
+<!--          </el-collapse-item>-->
+<!--        </el-collapse>-->
+<!--      </panel>-->
     </el-col>
   </el-row>
 </template>
@@ -106,6 +118,9 @@
     },
     data () {
       return {
+        contestID: null,
+        problemID: null,
+        problemID2: null,
         infoData: {
           user_count: 0,
           recent_contest_count: 0,
@@ -154,6 +169,22 @@
           })[0]
         }
         this.session = session
+      },
+      handleRejudge () {
+        if (this.contestID.isNull || this.problemID.isNull) {
+          this.$error('No ID')
+        }
+        api.contestProblemRejudge(this.contestID, this.problemID).then(
+                this.$success('Succeeded')
+        )
+      },
+      handleRejudge2 () {
+        if (this.problemID2.isNull) {
+          this.$error('No ID')
+        }
+        api.problemRejudge(this.problemID2).then(
+                this.$success('Succeeded')
+        )
       }
     },
     computed: {
