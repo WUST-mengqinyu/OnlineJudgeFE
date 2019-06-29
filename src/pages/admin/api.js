@@ -294,6 +294,21 @@ export default {
     return ajax('export_problem', 'post', {
       data
     })
+  },
+  problemRejudge (problemID) {
+    return ajax('admin/submission/problem_rejudge', 'get', {
+      params: {
+        problem_id: problemID
+      }
+    })
+  },
+  contestProblemRejudge (problemID, contestID) {
+    return ajax('admin/submission/contest_problem_rejudge', 'get', {
+      params: {
+        problem_id: problemID,
+        contest_id: contestID
+      }
+    })
   }
 }
 
