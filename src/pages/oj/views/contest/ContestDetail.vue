@@ -33,44 +33,44 @@
 
     </div>
     <div v-show="showMenu" id="contest-menu">
-      <Menu @on-click="handleRoute">
-        <item :route="{name: 'contest-details', params: {contestID: contestID}}">
+      <VerticalMenu @on-click="handleRoute">
+        <VerticalMenu-item :route="{name: 'contest-details', params: {contestID: contestID}}">
           <Icon type="home"></Icon>
           {{$t('m.Overview')}}
-        </item>
+        </VerticalMenu-item>
 
-        <item :disabled="contestMenuDisabled"
+        <VerticalMenu-item :disabled="contestMenuDisabled"
                            :route="{name: 'contest-announcement-list', params: {contestID: contestID}}">
           <Icon type="chatbubble-working"></Icon>
           {{$t('m.Announcements')}}
-        </item>
+        </VerticalMenu-item>
 
-        <item :disabled="contestMenuDisabled"
+        <VerticalMenu-item :disabled="contestMenuDisabled"
                            :route="{name: 'contest-problem-list', params: {contestID: contestID}}">
           <Icon type="ios-photos"></Icon>
           {{$t('m.Problems')}}
-        </item>
+        </VerticalMenu-item>
 
-        <item v-if="OIContestRealTimePermission"
+        <VerticalMenu-item v-if="OIContestRealTimePermission"
                            :disabled="contestMenuDisabled"
                            :route="{name: 'contest-submission-list'}">
           <Icon type="navicon-round"></Icon>
           {{$t('m.Submissions')}}
-        </item>
+        </VerticalMenu-item>
 
-        <item v-if="OIContestRealTimePermission"
+        <VerticalMenu-item v-if="OIContestRealTimePermission"
                            :disabled="contestMenuDisabled"
                            :route="{name: 'contest-rank', params: {contestID: contestID}}">
           <Icon type="stats-bars"></Icon>
           {{$t('m.Rankings')}}
-        </item>
+        </VerticalMenu-item>
 
-        <item v-if="showAdminHelper"
+        <VerticalMenu-item v-if="showAdminHelper"
                            :route="{name: 'acm-helper', params: {contestID: contestID}}">
           <Icon type="ios-paw"></Icon>
           {{$t('m.Admin_Helper')}}
-        </item>
-      </Menu>
+        </VerticalMenu-item>
+      </VerticalMenu>
     </div>
   </div>
 </template>
