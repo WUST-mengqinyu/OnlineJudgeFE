@@ -308,7 +308,8 @@
         return this.formFilter.result === '' ? 'Status' : JUDGE_STATUS[this.formFilter.result].name
       },
       rejudgeColumnVisible () {
-        return !this.contestID && this.user.admin_type === USER_TYPE.SUPER_ADMIN
+        return this.user.admin_type === USER_TYPE.SUPER_ADMIN
+        // return !this.contestID && this.user.admin_type === USER_TYPE.SUPER_ADMIN
       }
     },
     watch: {
