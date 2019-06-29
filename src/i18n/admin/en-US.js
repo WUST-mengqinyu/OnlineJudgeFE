@@ -1,5 +1,6 @@
 export const m = {
   // SideMenu.vue
+  Rejudge: 'Rejudge',
   Dashboard: 'Dashboard',
   General: 'General',
   User: 'User',

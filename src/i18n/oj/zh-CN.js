@@ -102,4 +102,4 @@ export const m = {
   UserHomeScore: '分数',
   List_Solved_Problems: '已解决问题的列表',
   UserHomeIntro: '这个家伙太懒了，还没有做题呢...'
-};
+}

@@ -1,5 +1,6 @@
 export const m = {
   // SideMenu.vue
+  Rejudge: '重判',
   Dashboard: '儀表板',
   General: '基本設定',
   User: '使用者管理',
